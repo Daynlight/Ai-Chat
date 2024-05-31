@@ -20,7 +20,8 @@ configurations { "Debug", "Release" }
 
 -- [APP] --
 project "APP"  
-    files { "**.h", "**.cpp" } 
+    files { "**/APP/**.h", "**/APP/**.cpp" } 
+    includedirs {"MAZE-AI/AI", "MAZE-AI/MAZE"}
     location "Maze-AI/APP"
     links { "AI", "MAZE" }
     kind "consoleapp"  
@@ -41,7 +42,7 @@ project "APP"
 
 -- [AI] --
 project "AI"  
-    files { "**.h", "**.cpp" } 
+    files { "**/AI/**.h", "**/AI/***.cpp" } 
     location "Maze-AI/AI"
     kind "staticlib"
     -- [AppMode Debug]
@@ -61,7 +62,7 @@ project "AI"
 
 -- [MAZE] --
 project "MAZE"  
-    files { "**.h", "**.cpp" } 
+    files { "**/MAZE/**.h", "**/MAZE/**.cpp" } 
     location "Maze-AI/MAZE"
     kind "staticlib"
     -- [AppMode Debug]
