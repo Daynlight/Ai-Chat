@@ -4,16 +4,17 @@
 #include <Windows.h>
 #include <cstdio>
 
-class APP
-{
-public:
-	APP();
-	void Loop();
-	~APP();
+namespace MAI {
+	class APP
+	{
+	public:
+		APP();
+		void Loop();
+		~APP();
 
-private:
-	MAZE* MAZEComponent;
-	AI* AIComponent;
-	bool Close = 0;
-};
-
+	private:
+		MAI::MAZE* MAZE;
+		MAI::AI* AI;
+		bool Close = 0;
+	};
+}

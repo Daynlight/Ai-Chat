@@ -1,9 +1,9 @@
 #include "AI.h"
 
-AI::AI()
+MAI::AI::AI()
 {
 }
 
-AI::~AI()
+MAI::AI::~AI()
 {
 }

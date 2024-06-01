@@ -1,12 +1,13 @@
 #pragma once
 
-class AI
-{
-public:
-	AI();
-	~AI();
+namespace MAI {
+	class AI
+	{
+	public:
+		AI();
+		~AI();
 
-private:
+	private:
 
-};
-
+	};
+}

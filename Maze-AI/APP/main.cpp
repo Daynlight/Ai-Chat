@@ -2,7 +2,7 @@
 
 int main() {
 
-	APP Application = APP();
+	MAI::APP Application = MAI::APP();
 	Application.Loop();
 
 	return 0;

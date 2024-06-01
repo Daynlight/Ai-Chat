@@ -1,24 +1,28 @@
 #include "APP.h"
 
-APP::APP()
-	:MAZEComponent(new MAZE()), AIComponent(new AI()) 
+MAI::APP::APP()
+	:MAZE(new MAI::MAZE()), AI(new MAI::AI()) 
 {
-	printf("To Exit Press 'Esc'");
+	MAZE->GenerateMaze();
+	MAZE->PrintMaze();
+	
+	//[OnLoad]
+
 }
 
-void APP::Loop()
+void MAI::APP::Loop()
 {
-	while (!Close) {
+	//[Loop]
+	//while (!Close) {
 
 
 
-
-		if(GetKeyState(0x1B)) Close = !GetKeyState(0x1B);
-	}
+	//}
 }
 
-APP::~APP()
+MAI::APP::~APP()
 {
-	delete MAZEComponent;
-	delete AIComponent;
+	//[OnClose]
+	delete MAZE;
+	delete AI;
 }
