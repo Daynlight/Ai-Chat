@@ -30,7 +30,7 @@ void MAI::MAZE::GenerateMaze()
 		
 		}
 
-		for (int i = 0; i < floor(Map.size() * Noise); i++) {
+		for (int i = 0; i < Map.size() * Noise; i++) {
 			int Place = GenerateRandom(0, Map.size() - 1);
 			Map[Place] = 1;
 		}
