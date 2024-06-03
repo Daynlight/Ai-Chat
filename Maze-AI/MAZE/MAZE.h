@@ -15,7 +15,7 @@ namespace MAI {
 
 	private:
 		//[Settings]
-		const float Ammount = 0.70;
+		const float Noise = 0.001f;
 		const int Row = 10;
 		const int Columns = 10;
 		std::array<short, 10*10> Map;

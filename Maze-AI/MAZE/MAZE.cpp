@@ -7,14 +7,38 @@ void MAI::MAZE::GenerateMaze()
 	Map.fill(0);
 	int Start = GenerateRandom(0, Map.size() - 1);
 	int End = GenerateRandom(0, Map.size() - 1);
+
 	if (Start != End) {
-		for (int i = 0; i < Map.size() * Ammount; i++) {
+		int Current = Start;
+		int NewCurrent = Current;
+		int NewMove = -1;
+		int LastMove = -1;
+		while (Current != End)
+		{
+			NewMove = GenerateRandom(0, 3);
+			if (NewMove == 0) NewCurrent -= Row;
+			else if (NewMove == 1 && (NewCurrent % 10) + 1 < 10) NewCurrent += 1;
+			else if (NewMove == 2) NewCurrent += Row;
+			else if (NewMove == 3 && (NewCurrent % 10) -1 > 0) NewCurrent -= 1;
+
+			if (NewCurrent >= 0 && NewCurrent < Columns * Row && NewMove != LastMove) {
+				Current = NewCurrent;
+				LastMove = NewMove;
+			}
+			
+			Map[Current] = 1;
+		
+		}
+
+		for (int i = 0; i < floor(Map.size() * Noise); i++) {
 			int Place = GenerateRandom(0, Map.size() - 1);
 			Map[Place] = 1;
 		}
+
 		Map[Start] = 2;
 		Map[End] = 3;
 	}
+
 	else GenerateMaze();
 }
 
