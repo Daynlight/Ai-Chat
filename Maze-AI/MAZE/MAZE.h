@@ -15,10 +15,11 @@ namespace MAI {
 
 	private:
 		//[Settings]
-		const float Noise = 0.001f;
-		const int Row = 10;
-		const int Columns = 10;
-		std::array<short, 10*10> Map;
+		const float Noise = 20.0f;
+		const int CreateEffort = 10;
+		const int Row = 50;
+		const int Columns = 50;
+		std::array<short, 50 * 50> Map;
 
 		int GenerateRandom(int Min = 0, int Max = 0);
 	};

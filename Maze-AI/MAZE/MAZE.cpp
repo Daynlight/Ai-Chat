@@ -5,41 +5,61 @@ MAI::MAZE::MAZE() {}
 void MAI::MAZE::GenerateMaze()
 {
 	Map.fill(0);
-	int Start = GenerateRandom(0, Map.size() - 1);
-	int End = GenerateRandom(0, Map.size() - 1);
+	//[Generate Start And End]
+	int Start = GenerateRandom(0, Row * Columns - 1);
+	int End = Start + GenerateRandom(-Start + 1, Row * Columns - Start - 1);
 
-	if (Start != End) {
-		int Current = Start;
-		int NewCurrent = Current;
-		int NewMove = -1;
-		int LastMove = -1;
-		while (Current != End)
-		{
-			NewMove = GenerateRandom(0, 3);
-			if (NewMove == 0) NewCurrent -= Row;
-			else if (NewMove == 1 && (NewCurrent % 10) + 1 < 10) NewCurrent += 1;
-			else if (NewMove == 2) NewCurrent += Row;
-			else if (NewMove == 3 && (NewCurrent % 10) -1 > 0) NewCurrent -= 1;
+	//[Create Route]
+	int Current = Start;
+	int Move = 0;
+	int LastMove = 0;
+	int Temp = 0;
+	int Try = 0;
 
-			if (NewCurrent >= 0 && NewCurrent < Columns * Row && NewMove != LastMove) {
-				Current = NewCurrent;
-				LastMove = NewMove;
+	while (Current != End) {
+		Move = GenerateRandom(0, 3);
+
+		if (Move == 0) Move = Row;
+		else if (Move == 1) Move = 1;
+		else if (Move == 2) Move = -Row;
+		else if (Move == 3) Move = -1;
+
+		if (Current + Move > 0 && Current + Move < Row * Columns  &&
+			Current + 2 * Move > 0 && Current + 2 * Move < Row * Columns &&
+			Map[Current + Move] != 1 && Map[Current + 2 * Move] != 1) {
+
+			if (abs(Move) != Row && floor((Current + Move) / Row) != floor(Current / Row))
+			{
+				if (Move < 0) Current += Row;
+				else if (Move > 0) Current -= Row;
 			}
-			
+
+			Current = Current + Move;
+			LastMove = Move;
 			Map[Current] = 1;
-		
+			Try = 0;
 		}
 
-		for (int i = 0; i < Map.size() * Noise; i++) {
-			int Place = GenerateRandom(0, Map.size() - 1);
-			Map[Place] = 1;
-		}
+		Try++;
 
-		Map[Start] = 2;
-		Map[End] = 3;
+		if(Try > CreateEffort) break;
 	}
 
-	else GenerateMaze();
+	//[Noise]
+	int Counter = 0;
+	while (Try <= CreateEffort && Counter < floor(Row * Columns * (Noise / 100))) {
+
+		Map[GenerateRandom(0, Row * Columns - 1)] = 1;
+		Counter++;
+	}
+
+	Map[Start] = 2;
+	Map[End] = 3;
+
+	if (Try > CreateEffort) {
+		Try = 0;
+		GenerateMaze();
+	}
 }
 
 void MAI::MAZE::GetMoves(int Position)
@@ -49,8 +69,8 @@ void MAI::MAZE::GetMoves(int Position)
 
 void MAI::MAZE::PrintMaze()
 {
-	for (int i = 0; i < Map.size(); i++) {
-		if ((i % 10) == 0) std::cout << "\n";
+	for (int i = 0; i < Row * Columns; i++) {
+		if ((i % Row) == 0) std::cout << "\n";
 		if (Map[i] == 0) std::cout << (char)254u << " ";
 		else if (Map[i] == 2) std::cout << "S ";
 		else if (Map[i] == 3) std::cout << "E ";
