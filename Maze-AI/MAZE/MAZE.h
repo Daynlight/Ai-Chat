@@ -17,6 +17,7 @@ namespace MAI {
 	private:
 		//[Settings]
 		std::vector<int> Map;
+		const short GoodMovePorpability = 30;
 
 		int GenerateRandom(int Min = 0, int Max = 0);
 	};
