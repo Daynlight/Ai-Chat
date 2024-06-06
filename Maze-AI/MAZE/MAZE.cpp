@@ -6,8 +6,8 @@ void MAI::MAZE::GenerateMaze()
 {
 	Map.fill(0);
 	//[Generate Start And End]
-	int Start = GenerateRandom(0, Row * Columns - 1);
-	int End = Start + GenerateRandom(-Start + 1, Row * Columns - Start - 1);
+	int Start = floor(Row * Columns / 2) + floor(Row / 2);
+	int End = Start + 8 + Row * 4;
 
 	//[Create Route]
 	int Current = Start;
@@ -26,25 +26,36 @@ void MAI::MAZE::GenerateMaze()
 
 		if (Current + Move > 0 && Current + Move < Row * Columns  &&
 			Current + 2 * Move > 0 && Current + 2 * Move < Row * Columns &&
-			Map[Current + Move] != 1 && Map[Current + 2 * Move] != 1) {
+			((abs(Move) != Row && floor((Current + 2 * Move) / Row) == floor(Current / Row)) || abs(Move) == Row) &&
+			((Map[Current + Move] != 1 && Map[Current + 2 * Move] != 1)) || Try > CreateEffort) {
 
-			if (abs(Move) != Row && floor((Current + Move) / Row) != floor(Current / Row))
-			{
-				if (Move < 0) Current += Row;
-				else if (Move > 0) Current -= Row;
-			}
 
 			Current = Current + Move;
+			Map[Current] = 1;
+			Current = Current + Move;
+			Map[Current] = 1;
+
 			LastMove = Move;
-			Map[Current] = 1;
-			Current = Current + Move;
-			Map[Current] = 1;
-			Try = 0;
+
+			////[Debug]
+			//Map[Start] = 2;
+			//Map[End] = 3;
+			//Map[Current] = 5;
+			//system("cls");
+			//PrintMaze();
+			//std::cout << Try;
+			//Map[Current] = 1;
 		}
 
 		Try++;
+		if (Current + Move > 0 && Current + Move < Row * Columns &&
+			Current + 2 * Move > 0 && Current + 2 * Move < Row * Columns &&
+			Map[Current + Move] != 1 && Map[Current + 2 * Move] != 1) Try = 0;
 
-		if(Try > CreateEffort) break;
+		//[GoBack to Start]
+		if (Try == CreateEffort) {
+			Current = Start;
+		};
 	}
 
 	//[Noise]
@@ -55,13 +66,9 @@ void MAI::MAZE::GenerateMaze()
 		Counter++;
 	}
 
+	//[Start and End]
 	Map[Start] = 2;
 	Map[End] = 3;
-
-	if (Try > CreateEffort) {
-		Try = 0;
-		GenerateMaze();
-	}
 }
 
 void MAI::MAZE::GetMoves(int Position)
@@ -71,13 +78,17 @@ void MAI::MAZE::GetMoves(int Position)
 
 void MAI::MAZE::PrintMaze()
 {
+	std::cout << "\n";
 	for (int i = 0; i < Row * Columns; i++) {
 		if ((i % Row) == 0) std::cout << "\n";
 		if (Map[i] == 0) std::cout << (char)254u << " ";
 		else if (Map[i] == 2) std::cout << "S ";
 		else if (Map[i] == 3) std::cout << "E ";
 		else if (Map[i] == 1) std::cout << "  ";
+		//[Debug]
+		else if (Map[i] == 5) std::cout << "O ";
 	}
+	std::cout << "\n";
 }
 
 MAI::MAZE::~MAZE() {}
