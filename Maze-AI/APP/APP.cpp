@@ -1,7 +1,7 @@
 #include "APP.h"
 
 MAI::APP::APP()
-	:MAZE(new MAI::MAZE()), AI(new MAI::AI()) 
+	:MAZE(new MAI::MAZE(pow(50, 2))), AI(new MAI::AI())
 {
 	MAZE->GenerateMaze();
 	MAZE->PrintMaze();
