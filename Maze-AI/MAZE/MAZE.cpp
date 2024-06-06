@@ -37,6 +37,8 @@ void MAI::MAZE::GenerateMaze()
 			Current = Current + Move;
 			LastMove = Move;
 			Map[Current] = 1;
+			Current = Current + Move;
+			Map[Current] = 1;
 			Try = 0;
 		}
 

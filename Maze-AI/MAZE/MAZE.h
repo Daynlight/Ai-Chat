@@ -15,7 +15,7 @@ namespace MAI {
 
 	private:
 		//[Settings]
-		const float Noise = 20.0f;
+		const float Noise = 0.0f;
 		const int CreateEffort = 10;
 		const int Row = 50;
 		const int Columns = 50;
