@@ -18,6 +18,8 @@ namespace MAI {
 		//[Settings]
 		std::vector<int> Map;
 		const short GoodMovePorpability = 30;
+		const short ForceEndRadPer = 10;
+		const short ForceEndPorpoability = 85;
 
 		int GenerateRandom(int Min = 0, int Max = 0);
 	};

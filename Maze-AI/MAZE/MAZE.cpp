@@ -23,9 +23,10 @@ void MAI::MAZE::GenerateMaze()
 		//[Genereate Move]
 		short MovePropability = GenerateRandom(0, 100);
 		Mat::Vec2<int> Move = Mat::Vec2<int>(0);
-		switch (MovePropability < GoodMovePorpability) {
+
+		switch (MovePropability < GoodMovePorpability || (sqrt(2 * Map.size()) * ForceEndRadPer / 100 * (ForceEndPorpoability/100 > MovePropability)) > CurrentPosition.Distance(End)) {
 			case true: // Good
-				if (CurrentPosition.x - End.x == 0) {
+				if (GenerateRandom(0,1)) {
 					if (CurrentPosition.y < End.y) Move.y = 2;
 					if (CurrentPosition.y > End.y) Move.y = -2;
 				}
@@ -52,7 +53,6 @@ void MAI::MAZE::GenerateMaze()
 				break;
 		}
 
-
 		if (CurrentPosition.x + Move.x > 0 && CurrentPosition.x + Move.x < sqrt(Map.size()) - 1 &&
 			CurrentPosition.y + Move.y > 0 && CurrentPosition.y + Move.y < sqrt(Map.size()) - 1) {
 
@@ -60,11 +60,6 @@ void MAI::MAZE::GenerateMaze()
 			Map[CurrentPosition.x + CurrentPosition.y * sqrt(Map.size())] = 1;
 			CurrentPosition += Move / 2;
 			Map[CurrentPosition.x + CurrentPosition.y * sqrt(Map.size())] = 1;
-
-			Map[Start.x + Start.y * sqrt(Map.size())] = 2;
-			Map[End.x + End.y * sqrt(Map.size())] = 3;
-			system("cls");
-			PrintMaze();
 		}
 	}
 
