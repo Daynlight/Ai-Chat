@@ -18,6 +18,7 @@ void MAI::MAZE::GenerateMaze()
 
 	//[Create Route]
 	Mat::Vec2<int> CurrentPosition = Start;
+	int Try = 0;
 
 	while (CurrentPosition.Distance(End) > 1) {
 		//[Genereate Move]
@@ -54,13 +55,25 @@ void MAI::MAZE::GenerateMaze()
 		}
 
 		if (CurrentPosition.x + Move.x > 0 && CurrentPosition.x + Move.x < sqrt(Map.size()) - 1 &&
-			CurrentPosition.y + Move.y > 0 && CurrentPosition.y + Move.y < sqrt(Map.size()) - 1) {
+			CurrentPosition.y + Move.y > 0 && CurrentPosition.y + Move.y < sqrt(Map.size()) - 1 &&
+			(Map[(CurrentPosition + Move).x + (CurrentPosition + Move).y * sqrt(Map.size())] != 1 || Try > 100)) {
 
 			CurrentPosition += Move / 2;
 			Map[CurrentPosition.x + CurrentPosition.y * sqrt(Map.size())] = 1;
 			CurrentPosition += Move / 2;
 			Map[CurrentPosition.x + CurrentPosition.y * sqrt(Map.size())] = 1;
+
+			Try = 0;
+
+		#ifdef MAI_DEBUG
+					//[Debug]
+					system("cls");
+					Map[Start.x + Start.y * sqrt(Map.size())] = 2;
+					Map[End.x + End.y * sqrt(Map.size())] = 3;
+					PrintMaze();
+		#endif
 		}
+		else Try++;
 	}
 
 	//[Place Start and End]

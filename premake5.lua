@@ -27,14 +27,14 @@ project "APP"
     kind "consoleapp"  
 -- [AppMode Debug]
     filter "configurations:Debug"
-    defines { "CE_DEBUG" }
+    defines { "MAI_DEBUG" }
     symbols "On"
     optimize "Off"
     targetdir "Output/Debug" 
     debugdir "Output/Debug"
 -- [AppMode Release]
     filter "configurations:Release"
-    defines { "CE_RELEASE" }
+    defines { "MAI_RELEASE" }
     symbols "Off"
     optimize "On"
     targetdir "Output/Release" 
@@ -47,14 +47,14 @@ project "AI"
     kind "staticlib"
     -- [AppMode Debug]
     filter "configurations:Debug"
-    defines { "CE_DEBUG" }
+    defines { "MAI_DEBUG" }
     symbols "On"
     optimize "Off"
     targetdir "Output/Debug" 
     debugdir "Output/Debug"
     -- [AppMode Release]
     filter "configurations:Release"
-    defines { "CE_RELEASE" }
+    defines { "MAI_RELEASE" }
     symbols "Off"
     optimize "On"
     targetdir "Output/Release" 
@@ -67,14 +67,14 @@ project "MAZE"
     kind "staticlib"
     -- [AppMode Debug]
     filter "configurations:Debug"
-    defines { "CE_DEBUG" }
+    defines { "MAI_DEBUG" }
     symbols "On"
     optimize "Off"
     targetdir "Output/Debug" 
     debugdir "Output/Debug"
     -- [AppMode Release]
     filter "configurations:Release"
-    defines { "CE_RELEASE" }
+    defines { "MAI_RELEASE" }
     symbols "Off"
     optimize "On"
     targetdir "Output/Release" 
