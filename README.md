@@ -2,6 +2,12 @@
   <h1>Maze-AI 🤖</h1>
   <p><img src="Maze.gif" alt="Maze AI"></p>
   <p>Welcome to Maze-AI! This project focuses on employing artificial intelligence techniques to solve mazes. It generates mazes from scratch and utilizes AI algorithms to find optimal solutions.</p>
+    <p>
+    <img src="https://img.shields.io/github/license/Daynlight/Maze-AI" alt="License">
+    <img src="https://img.shields.io/github/issues/Daynlight/Maze-AI" alt="Issues">
+    <img src="https://img.shields.io/github/forks/Daynlight/Maze-AI" alt="Forks">
+    <img src="https://img.shields.io/github/stars/Daynlight/Maze-AI" alt="Stars">
+  </p>
 </div>
 
 ## Features ✨
@@ -32,8 +38,7 @@ Open sln file and compile it
 ```
 4. **Customization:** 🎨 Explore the various parameters in the code to adjust maze dimensions, complexity, solver algorithms, etc.
 ```
-Change Parametrs in Maze.h
-And for size Change At Create in App.cpp
+Change Parametrs in Maze.h And for size Change At Create in App.cpp
 ```
 6. **Run exe**
 </div>
