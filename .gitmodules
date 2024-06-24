@@ -1,4 +1,0 @@
-[submodule "Maze-AI/Lib/Include/Mat-Cpp"]
-	path = Maze-AI/Lib/Include/Mat-Cpp
-	url = https://github.com/Daynlight/Cpp-Mat
-	branch = Release
