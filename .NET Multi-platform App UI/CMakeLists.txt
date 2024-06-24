@@ -1,0 +1,9 @@
+cmake_minimum_required(VERSION 3.3)
+
+project(.NETMAUIAPP VERSION 1.0 LANGUAGES CSharp)
+
+file(GLOB_RECURSE CS_FILES *.cs)
+
+add_executable(${PROJECT_NAME} ${CS_FILES})
+
+set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME})
