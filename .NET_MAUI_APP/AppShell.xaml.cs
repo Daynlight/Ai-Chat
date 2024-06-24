@@ -1,4 +1,4 @@
-﻿namespace _NET_MAUI_App;
+﻿namespace _;
 
 public partial class AppShell : Shell
 {
