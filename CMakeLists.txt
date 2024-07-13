@@ -1,0 +1,11 @@
+cmake_minimum_required(VERSION 3.3)
+
+project(NeuralNetwork VERSION 1.0)
+
+file(GLOB_RECURSE MAIN_FILES ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp)
+file(GLOB_RECURSE NEURALNETWORK_FILES ${CMAKE_CURRENT_SOURCE_DIR}/Neural-Network/*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/Neural-Network/*.h)
+file(GLOB_RECURSE LIB_FILES ${CMAKE_CURRENT_SOURCE_DIR}/vendor/*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/vendor/*.h)
+
+add_executable(NeuralNetwork ${NEURALNETWORK_FILES} ${MAIN_FILES})
+
+set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT NeuralNetwork)
