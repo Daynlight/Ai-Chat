@@ -1,2 +1,10 @@
 build/
 prod/
+.vs/
+*.vcxproj*
+*.cmake
+CMakeCache.txt
+CMakeFiles/
+*.sln
+Debug/
+Release/
