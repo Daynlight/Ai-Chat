@@ -1,0 +1,28 @@
+name: Merge Create File
+
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [closed]
+
+jobs:
+  run-script:
+    runs-on: ubuntu-lastest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+      
+      - name: Run Script
+        run: .github/build.sh
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Apply changes from post-merge script"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
