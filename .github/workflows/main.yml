@@ -1,0 +1,15 @@
+
+on:
+  push:
+    branches: [ "Release" ]
+  workflow_dispatch:
+
+jobs: 
+  build:
+    name: Build exe files
+    runs-on: ubuntu-lastest
+    steps:
+      - uses: actions/checkout@v4
+      - name: use actions
+      - name: Create Files
+        run: .github/build.sh
