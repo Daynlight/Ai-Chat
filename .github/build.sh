@@ -1,5 +1,3 @@
-git submodule update --remote
-
 mkdir build
 mkdir prod
 cd build
