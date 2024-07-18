@@ -1,4 +1,4 @@
-[submodule "vendor/modules/CPP-Data"]
-	path = vendor/modules/CPP-Data
-	url = https://github.com/Daynlight/CPP-Data.git
+[submodule "Neural-Network/vendor/modules/DATA-CPP"]
+	path = Neural-Network/vendor/modules/DATA-CPP
+	url = https://github.com/Daynlight/CPP-Data
 	branch = Release
