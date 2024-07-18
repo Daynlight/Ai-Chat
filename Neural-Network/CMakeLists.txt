@@ -1,8 +1,5 @@
 cmake_minimum_required(VERSION 3.3)
 
-project(NeuralNetwork VERSION 1.0 LANGUAGES CXX)
-set(CMAKE_CXX_STANDARD 20)
-
 file(GLOB_RECURSE MAIN_FILES 
     ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp)
 file(GLOB_RECURSE NEURALNETWORK_FILES 
@@ -15,5 +12,3 @@ file(GLOB_RECURSE MODULES_FILES
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/vendor/modules)
 
 add_executable(NeuralNetwork ${NEURALNETWORK_FILES} ${MAIN_FILES} ${MODULES_FILES})
-
-set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT NeuralNetwork)

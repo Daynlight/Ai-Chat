@@ -1,4 +1,4 @@
-#include "Neural-Network/NeuralNetwork.h"
+#include "NeuralNetwork.h"
 
 int main() {
 	NN::NeuralNetwork* neural_network = new NN::NeuralNetwork();
